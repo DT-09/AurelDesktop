@@ -1,33 +1,33 @@
 # AUREL Desktop
 
-AUREL is an independent Windows desktop environment companion. It does not use Rainmeter, Rainmeter skins, or third-party widget hosts.
+AUREL is a standalone Windows desktop companion. It does not require Rainmeter or a third-party widget host.
 
-## First release
+## Included in this build
 
-- Live horizontal desktop clock.
-- Draggable, position-persistent widget.
-- Three built-in palettes: Signature, Nocturne, and Ivory.
-- Position lock and always-on-top controls.
-- Settings saved locally in `%AppData%\AUREL\settings.json`.
-- Right-click the widget to open its menu and exit the application.
+- Translucent horizontal desktop clock with live time, date and ISO week.
+- Three built-in palettes: Signature, Nocturne and Ivory.
+- Display typography choices: Times New Roman, Georgia, Garamond, Palatino Linotype and Cambria. These use installed Windows font families; AUREL does not redistribute commercial font files.
+- Panel opacity presets: 35%, 50%, 65% and 80%.
+- Optional live CPU and RAM status using Windows system APIs.
+- AUREL cursor scheme generator and installer, with a saved backup and restore command for the prior Windows cursor settings.
+- Draggable widget, saved position, position lock and always-on-top setting.
+- Settings stored locally in `%AppData%\AUREL\settings.json`.
 
-## Signature design
+## Design
 
-The default AUREL Signature palette uses:
-- Ebony and espresso surfaces.
-- Warm ivory typography.
-- Champagne borders and secondary text.
-- Restrained teal accent.
-- Times New Roman display typography.
-- A translucent panel with approximately 50% background opacity.
+The Signature palette uses ebony and espresso surfaces, warm ivory typography, champagne borders and a restrained teal accent. The default panel opacity is 50%. The panel uses transparency, not backdrop blur.
 
-The panel uses transparency, not backdrop blur. Windows desktop composition and other windows may affect the perceived result.
+## Cursor scheme
+
+Right-click the widget, choose **Cursor scheme → Install AUREL cursor scheme**. AUREL creates its cursor files under `%AppData%\AUREL\Cursors`, saves the existing cursor registry values once, applies the selected scheme to the current Windows user, and asks Windows to reload its cursors.
+
+Choose **Restore previous cursor scheme** to restore the saved values. The cursor files must remain in that folder while the scheme is active. If you remove AUREL manually, restore the previous scheme first.
 
 ## Requirements
 
-- Windows 10 or Windows 11.
-- .NET 8 SDK to build from source.
-- The GitHub Actions workflow builds a self-contained Windows x64 release artifact.
+- Windows 10 or Windows 11, x64.
+- No separate .NET installation is required for the self-contained GitHub Actions release.
+- .NET 8 SDK is required to build from source.
 
 ## Run from source
 
@@ -40,18 +40,14 @@ dotnet run
 ## Publish locally
 
 ```powershell
-dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
+dotnet publish AurelDesktop.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 ```
-
-The executable is written under `bin/Release/net8.0-windows/win-x64/publish/`.
 
 ## Controls
 
-- **Drag:** hold the left mouse button and move the widget.
-- **Right-click:** themes, position lock, always-on-top, and exit.
-- **Lock position:** prevents accidental movement.
-- **Always on top:** keeps the clock above ordinary windows.
+- Left-drag the widget to move it.
+- Right-click for themes, typography, transparency, system status, cursor installation/restoration, position lock, always-on-top and exit.
 
-## Project direction
+## Not included yet
 
-AUREL is being developed as a modular Windows desktop companion. Future modules may include calendar, system status, focus tools, and desktop presentation controls. Those are not claimed as implemented in this first release.
+Calendar, weather, notifications, taskbar replacement, Start-menu replacement, lock-screen changes, and a full widget marketplace are not part of this build. AUREL does not claim to replace Windows Explorer or Windows shell components.
