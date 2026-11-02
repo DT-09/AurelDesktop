@@ -1,0 +1,94 @@
+<Window x:Class="AUREL.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AUREL Desktop"
+        Width="760" Height="166"
+        MinWidth="560" MinHeight="140"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Topmost="True"
+        ShowInTaskbar="True"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Window.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="AUREL themes" IsEnabled="False" />
+            <Separator />
+            <MenuItem x:Name="SignatureThemeItem" Header="Signature · Ebony &amp; Champagne" IsCheckable="True" IsChecked="True" Click="SignatureTheme_Click" />
+            <MenuItem x:Name="NocturneThemeItem" Header="Nocturne · Deep Obsidian" IsCheckable="True" Click="NocturneTheme_Click" />
+            <MenuItem x:Name="IvoryThemeItem" Header="Ivory · Warm Porcelain" IsCheckable="True" Click="IvoryTheme_Click" />
+            <Separator />
+            <MenuItem x:Name="LockPositionItem" Header="Lock position" IsCheckable="True" Click="LockPosition_Click" />
+            <MenuItem x:Name="AlwaysOnTopItem" Header="Always on top" IsCheckable="True" IsChecked="True" Click="AlwaysOnTop_Click" />
+            <Separator />
+            <MenuItem Header="Exit AUREL" Click="Exit_Click" />
+        </ContextMenu>
+    </Window.ContextMenu>
+
+    <Border x:Name="PanelBorder"
+            Margin="3"
+            CornerRadius="18"
+            BorderThickness="1"
+            Background="#80231B18"
+            BorderBrush="#BFAE987A"
+            SnapsToDevicePixels="True">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="22" ShadowDepth="5" Opacity="0.22" Color="#090807" />
+        </Border.Effect>
+        <Grid Margin="28,17,30,17">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="25" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Border x:Name="AccentBar" Grid.Column="0" Width="3" CornerRadius="2"
+                    Background="#FF6F9B91" VerticalAlignment="Stretch" />
+
+            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                <TextBlock x:Name="DateText"
+                           FontFamily="Times New Roman"
+                           FontSize="15"
+                           CharacterSpacing="90"
+                           Foreground="#FFD5C6B1"
+                           Margin="1,0,0,1" />
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock x:Name="TimeText"
+                               FontFamily="Times New Roman"
+                               FontSize="59"
+                               FontWeight="Normal"
+                               Foreground="#FFF3EFE5"
+                               LineHeight="65"
+                               VerticalAlignment="Center" />
+                    <TextBlock x:Name="PeriodText"
+                               FontFamily="Times New Roman"
+                               FontSize="17"
+                               Foreground="#FFD5C6B1"
+                               Margin="13,17,0,0"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="25,0,0,0">
+                <TextBlock Text="A U R E L"
+                           FontFamily="Times New Roman"
+                           FontSize="13"
+                           CharacterSpacing="170"
+                           Foreground="#FFE0D2BD"
+                           HorizontalAlignment="Right" />
+                <Border Height="1" Width="72" Background="#66AE987A" Margin="0,9,0,8" />
+                <TextBlock x:Name="WeekText"
+                           Text="DESKTOP ENVIRONMENT"
+                           FontFamily="Times New Roman"
+                           FontSize="8"
+                           CharacterSpacing="95"
+                           Foreground="#FFBDAE9B"
+                           HorizontalAlignment="Right" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
