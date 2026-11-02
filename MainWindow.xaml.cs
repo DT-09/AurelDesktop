@@ -18,16 +18,16 @@ public partial class MainWindow : Window
     private bool _allowClose;
 
     private static readonly ThemePalette Signature = new(
-        "Signature", "#80231B18", "#BFAE987A", "#FF6F9B91",
-        "#FFF3EFE5", "#FFD5C6B1", "#FFE0D2BD", "#FFBDAE9B");
+        "#80231B18", "#BFAE987A", "#FF6F9B91",
+        "#FFF3EFE5", "#FFD5C6B1");
 
     private static readonly ThemePalette Nocturne = new(
-        "Nocturne", "#B5121518", "#BFAE987A", "#FF82A7A0",
-        "#FFF2EEE5", "#FFD0C5B6", "#FFE1D5C4", "#FFAAA49B");
+        "#B5121518", "#BFAE987A", "#FF82A7A0",
+        "#FFF2EEE5", "#FFD0C5B6");
 
     private static readonly ThemePalette Ivory = new(
-        "Ivory", "#DDF3EFE5", "#BFA38D6B", "#FF557C74",
-        "#FF302923", "#FF74685B", "#FF493E34", "#FF827567");
+        "#DDF3EFE5", "#BFA38D6B", "#FF557C74",
+        "#FF302923", "#FF74685B");
 
     public MainWindow()
     {
@@ -67,12 +67,6 @@ public partial class MainWindow : Window
         TimeText.Foreground = Brush(palette.Primary);
         PeriodText.Foreground = Brush(palette.Secondary);
         DateText.Foreground = Brush(palette.Secondary);
-
-        if (PanelBorder.Child is Grid grid && grid.Children.Count > 0 &&
-            grid.Children[0] is Border)
-        {
-            // Accent is updated directly above; this keeps theme application self-contained.
-        }
 
         SignatureThemeItem.IsChecked = _settings.Theme == "Signature";
         NocturneThemeItem.IsChecked = _settings.Theme == "Nocturne";
@@ -194,6 +188,6 @@ public partial class MainWindow : Window
     }
 
     private sealed record ThemePalette(
-        string Name, string Panel, string Border, string Accent,
-        string Primary, string Secondary, string Highlight, string Muted);
+        string Panel, string Border, string Accent,
+        string Primary, string Secondary);
 }
